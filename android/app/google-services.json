@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "880080785905",
+    "project_id": "qstart-ec938",
+    "storage_bucket": "qstart-ec938.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880080785905:android:3729b2f133e22925d27450",
+        "android_client_info": {
+          "package_name": "com.example.qstart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880080785905-nkuvcj1vg8injdaa5ptlmtimsfd964t7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.qstart",
+            "certificate_hash": "504f647c00c27006126aa59a9b0f12d2d797c0c3"
+          }
+        },
+        {
+          "client_id": "880080785905-ng2lqkupofichd6s3m4jppfsp56566of.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRIiprDpeaCN1bhiseA9cZ7MZv5FHhXoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "880080785905-ng2lqkupofichd6s3m4jppfsp56566of.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
