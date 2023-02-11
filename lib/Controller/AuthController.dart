@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -129,6 +130,33 @@ class AuthController extends GetxController{
     try{
       loading.value= true;
       await auth.signInWithEmailAndPassword(email: loginemail.text, password: loginpass.text);
+
+
+      //check whether user is present in user table or not
+      int checkuser=0;
+      var collection = db.collection('users');
+      var querySnapshot = await collection.get();
+      for (var queryDocumentSnapshot in querySnapshot.docs) {
+      //each docs is accessed to data var on each iteration
+       Map<String, dynamic> data = queryDocumentSnapshot.data();
+      
+            //checking whether email id in docs on this iteration is equal to current user
+            if(data['email']==auth.currentUser!.email){
+                 checkuser=1;
+              }
+          }
+        if(checkuser==0)
+        {
+          auth.signOut();
+          Get.snackbar('Error', 'You are not a user');
+          loading.value=false;
+          loginemail.clear();
+          loginpass.clear();
+          return;
+        }
+      //end of user exit or not check
+
+
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString("uid", auth.currentUser!.uid);
       await profiledetails();
@@ -141,6 +169,8 @@ class AuthController extends GetxController{
       {
           Get.offAll(UserNavScreen());
       }
+      loginemail.clear();
+      loginpass.clear();
       loading.value=false;
     }
     catch(e){

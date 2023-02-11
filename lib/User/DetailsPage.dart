@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:qstart/Controller/deleteComplaintController.dart';
@@ -33,24 +34,26 @@ class DetailsPage extends StatelessWidget {
             //close button
             IconButton(
                 color: Colors.white,
-                padding:  EdgeInsets.only(top: Dimensions.height70, left: Dimensions.width20),
+                padding:  EdgeInsets.only(top: Dimensions.height98, left: Dimensions.width20),
                 onPressed: () {
                   Get.back();
                 },
-                icon:  const Icon(
-                  Icons.close
-                  // FontAwesomeIcons.xmark
+                icon:   Icon(
+                  // Icons.close,
+                  size: Dimensions.height30,
+                  FontAwesomeIcons.xmark
                 )),
             //delete item button
             IconButton(
                 color: Colors.white,
-                padding:  EdgeInsets.only(top: Dimensions.height70, right: Dimensions.width20),
+                padding:  EdgeInsets.only(top: Dimensions.height98, right: Dimensions.width20),
                 onPressed: () {
                     popUpBox(context);
                 },
-                icon:  const Icon(
-                  Icons.delete
-                  // FontAwesomeIcons.trash
+                icon:    Icon(
+                  Icons.delete,
+                  // FontAwesomeIcons.trash,
+                  size: Dimensions.height30,
                   )),
           ],
         ),

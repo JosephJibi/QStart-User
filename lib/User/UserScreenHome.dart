@@ -104,6 +104,7 @@ class UserScreenHome extends StatelessWidget {
                    StreamBuilder<QuerySnapshot>(
                       stream: FirebaseFirestore.instance
                           .collection('complaint')
+                          .orderBy('date',descending: false)
                           .snapshots(),
                       builder: (context, snapshot) {
                         if (!snapshot.hasData) {
