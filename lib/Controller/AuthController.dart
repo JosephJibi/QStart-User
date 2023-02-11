@@ -103,6 +103,7 @@ class AuthController extends GetxController{
       type: type,
       profileimg: '',
       complaint: 0,
+      donecount:0
     );
     await db.collection("users").add(user.toMap());
   }

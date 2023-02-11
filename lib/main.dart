@@ -10,11 +10,13 @@ import 'package:qstart/User/AddComplaint.dart';
 import 'package:qstart/User/DetailsPage.dart';
 import 'package:qstart/User/UserNavScreen.dart';
 import 'package:qstart/User/UserScreenHome.dart';
+import 'package:qstart/utilities/dimensions.dart';
 
 void main(List<String> args)async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
+
 }
 
 class MyApp extends StatelessWidget {

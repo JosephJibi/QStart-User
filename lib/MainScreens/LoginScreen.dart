@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:qstart/Controller/AuthController.dart';
 import 'package:qstart/MainScreens/QuestionScreen.dart';
-import 'package:qstart/MainScreens/RegistrationScreen.dart';
-
+import '../utilities/dimensions.dart';
 import '../utilities/inputBox.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -23,18 +20,19 @@ class LoginScreen extends StatelessWidget {
   final ctr = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SafeArea(
           child: ListView(
         children: [
           SizedBox(
-            height: 10, //+#
+            height: Dimensions.height10, 
           ),
           //this center and column holds text for welcome
           Center(
             child: Column(
               children: [
-                Text('Welcome,',
+                const Text('Welcome,',
                     style: TextStyle(
                         letterSpacing: 2,
                         fontSize: 50,
@@ -50,11 +48,11 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: Dimensions.height20,
           ), //+#
           //this container holds gif
           Container(
-            height: 230, // +#
+            height: Dimensions.height230, // +#
             width: MediaQuery.of(context).size.width, // +#
             child: Image.asset(
               'assets/images/LottieSignin.gif',
@@ -62,11 +60,11 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 40,
+            height: Dimensions.height40,
           ), //+#
           //column for textfields
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding:  EdgeInsets.symmetric(horizontal: Dimensions.height20),
             child: Column(
               children: [
                 //email id
@@ -74,13 +72,13 @@ class LoginScreen extends StatelessWidget {
                   controller: ctr.loginemail,
                   keyboardType: TextInputType.emailAddress,
                   decoration: inputBoxes().maininputDecoration.copyWith(
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.email,
                       ),
-                      label: Text('Email Id')),
+                      label: const Text('Email Id')),
                 ),
                 SizedBox(
-                  height: 15,
+                  height: Dimensions.height15,
                 ), //+#
                 //password
                
@@ -91,11 +89,11 @@ class LoginScreen extends StatelessWidget {
                          // _obscureText hold a bool value which tell hide or show password
                         obscureText: ctr.obscurePassSignin.value,
                         decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.lock_outline),
+                            prefixIcon: const Icon(Icons.lock_outline),
                             fillColor: Colors.grey[200],
                             border: OutlineInputBorder(
                                 borderSide: const BorderSide(color: Colors.white),
-                                borderRadius: BorderRadius.circular(12)),
+                                borderRadius: BorderRadius.circular(Dimensions.height12)),
                             label: const Text('Password'),
                             //hide and show button on password field
                             suffixIcon: IconButton(
@@ -103,10 +101,10 @@ class LoginScreen extends StatelessWidget {
                                   ? Icons.visibility
                                   : Icons.visibility_off),
                               onPressed: () {
-                                print( ctr.obscurePassSignin.value);
+                               
                                 // obs() {
                                    ctr.obscurePassSignin.value =  !ctr.obscurePassSignin.value;
-                                  print( ctr.obscurePassSignin.value);
+                    
                                 // }
                               },
                             ),),),
@@ -130,10 +128,10 @@ class LoginScreen extends StatelessWidget {
                   },
                   child: Obx(
                     ()=> Container(
-                      padding: const EdgeInsets.all(20),
+                      padding:  EdgeInsets.all(Dimensions.height20),
                       decoration: BoxDecoration(
                           color: const Color.fromARGB(255, 39, 183, 240),
-                          borderRadius: BorderRadius.circular(12)),
+                          borderRadius: BorderRadius.circular(Dimensions.height12)),
                       child:  Center(
                           child: (ctr.loading.value == true)?
                           const CircularProgressIndicator(color: Colors.white,):
@@ -172,43 +170,42 @@ class LoginScreen extends StatelessWidget {
   //popup
    Future popUpBox(BuildContext ctx) async
   {
-    print('working');
     return showDialog(
       context: ctx,
           builder: (ctx1) {
       return 
           AlertDialog(
              
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(25),bottomLeft: Radius.circular(25))),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(Dimensions.height25),bottomLeft: Radius.circular(Dimensions.height25))),
             content: Container(
                width: MediaQuery.of(ctx).size.width,
-            height: 300,
-               padding: EdgeInsets.all(11.0),
+            height: Dimensions.height300,
+               padding: EdgeInsets.all(Dimensions.height11),
             color: Colors.white,
               child: ListView(
                 children: [
                   Center(child: Text('Forgot Password',style: GoogleFonts.poppins(fontSize: 30))),
-                  SizedBox(height: 10,),
+                  SizedBox(height: Dimensions.height10,),
                 TextFormField(
                   controller: ctr.resetEmail,
                       keyboardType: TextInputType.emailAddress,
                       decoration: inputBoxes().maininputDecoration.copyWith(
-                          prefixIcon: Icon(
+                          prefixIcon: const Icon(
                             Icons.email,
                           ),
-                          label: Text('Email Id')),
+                          label: const Text('Email Id')),
                     ),
-                SizedBox(height: 20,),
+                SizedBox(height: Dimensions.height20,),
                  GestureDetector(
                   onTap: (){
                     ctr.resetpassword();
                   },
                    child: Container(
-                      height: 50,
-                        padding: const EdgeInsets.all(2),
+                      height: Dimensions.height50,
+                        padding:  EdgeInsets.all(Dimensions.height2),
                         decoration: BoxDecoration(
                             color: const Color.fromARGB(255, 39, 183, 240),
-                            borderRadius: BorderRadius.circular(12)),
+                            borderRadius: BorderRadius.circular(Dimensions.height12)),
                         child: const Center(
                             child: Text(
                           'Send Reset Link',
@@ -219,10 +216,10 @@ class LoginScreen extends StatelessWidget {
                         )),
                       ),
                  ),
-                    SizedBox(height: 20,),
+                    SizedBox(height: Dimensions.height20,),
                     TextButton(onPressed: (){
                       Navigator.of(ctx).pop();
-                    }, child: Text('Close'))
+                    }, child: const Text('Close'))
                 
               ]),
             ),

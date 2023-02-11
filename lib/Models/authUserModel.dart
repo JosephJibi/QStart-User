@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class authUserModel
 {
   String? username,dep,uniqueNo,phoneNo,email,type,id,profileimg;
-  int? complaint;
+  int? complaint,donecount;
   
   //
   //all this varables are based on inputbox in signup screen:
@@ -17,7 +17,7 @@ class authUserModel
   //
   
   //Creating constructor
-  authUserModel({this.username,this.dep,this.uniqueNo,this.phoneNo,this.email,this.type,this.id,this.profileimg,this.complaint});
+  authUserModel({this.username,this.dep,this.uniqueNo,this.phoneNo,this.email,this.type,this.id,this.profileimg,this.complaint,this.donecount});
 
   // //getmethod
   // factory authUserModel.fromMap(DocumentSnapshot map){
@@ -45,12 +45,8 @@ class authUserModel
       "type":type,
       "profileimg":profileimg,
       "complaint":complaint,
+      "donecount":donecount,
     };
   }
-
-
-
-
-
  
 }

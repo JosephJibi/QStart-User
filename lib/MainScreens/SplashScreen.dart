@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:qstart/MainScreens/LoginScreen.dart';
+import 'package:qstart/utilities/dimensions.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 5), () {
       Get.offAll(LoginScreen());
     });
   }
@@ -30,7 +28,6 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            
             child: Image.asset(
               "assets/images/logo.png",
               height: MediaQuery.of(context).size.height /5,
@@ -41,9 +38,9 @@ class _SplashScreenState extends State<SplashScreen> {
           Text(
             'QSTART',
             style: TextStyle(
-                color: Color.fromARGB(255, 77, 82, 89),
-                letterSpacing: 2,
-                fontSize: 40,
+                color: const Color.fromARGB(255, 77, 82, 89),
+                letterSpacing: Dimensions.height2,
+                fontSize: Dimensions.height40,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Amaranth-Bold'),
           ),

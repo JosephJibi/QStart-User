@@ -1,13 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:qstart/Controller/deleteComplaintController.dart';
-
-import '../Controller/complaintController.dart';
+import 'package:qstart/utilities/dimensions.dart';
 import '../utilities/colors.dart';
 
 class DetailsPage extends StatelessWidget {
@@ -25,7 +21,7 @@ class DetailsPage extends StatelessWidget {
             document['img'],
             
           ),
-          placeholder: AssetImage('assets/images/loading.gif'),
+          placeholder: const AssetImage('assets/images/loading.gif'),
           height: MediaQuery.of(context).size.height / 1.5,
             width: MediaQuery.of(context).size.width,
             fit: BoxFit.cover,
@@ -37,22 +33,22 @@ class DetailsPage extends StatelessWidget {
             //close button
             IconButton(
                 color: Colors.white,
-                padding: const EdgeInsets.only(top: 70, left: 20),
+                padding:  EdgeInsets.only(top: Dimensions.height70, left: Dimensions.width20),
                 onPressed: () {
                   Get.back();
                 },
-                icon:  Icon(
+                icon:  const Icon(
                   Icons.close
                   // FontAwesomeIcons.xmark
                 )),
             //delete item button
             IconButton(
                 color: Colors.white,
-                padding: const EdgeInsets.only(top: 70, right: 20),
+                padding:  EdgeInsets.only(top: Dimensions.height70, right: Dimensions.width20),
                 onPressed: () {
                     popUpBox(context);
                 },
-                icon:  Icon(
+                icon:  const Icon(
                   Icons.delete
                   // FontAwesomeIcons.trash
                   )),
@@ -67,14 +63,14 @@ class DetailsPage extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(45),
+                  topLeft: Radius.circular(Dimensions.height45),
                   // topRight: Radius.circular(40)
                 )),
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 30, right: 20, left: 20),
+                  padding:  EdgeInsets.only(top: Dimensions.height30, right: Dimensions.width20, left: Dimensions.width20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -85,14 +81,14 @@ class DetailsPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                            //define date of complaint
-                          Icon(Icons.calendar_month_outlined),
+                          const Icon(Icons.calendar_month_outlined),
                           Text(document['date']),
-                          Spacer(),
+                          const Spacer(),
                            //container for display work status
                           Container(
                               decoration: BoxDecoration(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
+                                      BorderRadius.all(Radius.circular(Dimensions.height10)),
                                   color: (document['status']=='Requested')?
                                                 AppColor.requestedColour:
                                                 (document['status']=='Processing')?
@@ -106,43 +102,43 @@ class DetailsPage extends StatelessWidget {
                                                 AppColor.doneColour
                                                 ,),
                               child: Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(Dimensions.height8),
                                 child: Text(document['status']),
                               )),
 
                         ],
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(height: Dimensions.height20,),
                       //heading - title of complaint
                       Text(
                         document['title'],
-                        style: GoogleFonts.firaSans(fontWeight: FontWeight.bold,fontSize: 40),
+                        style: GoogleFonts.firaSans(fontWeight: FontWeight.bold,fontSize: Dimensions.height40),
                       ),
                       //location hint of complaint
                       Text(
                         document['locationhint'],
                         style: GoogleFonts.poppins(
-                          fontSize: 20,
+                          fontSize: Dimensions.height20,
                         ),
                       ),
-                      SizedBox(height: 5,),
+                      SizedBox(height: Dimensions.height5,),
                       Row(
                         mainAxisAlignment:MainAxisAlignment.start,
                        
                         
                           children: [
-                            Icon(Icons.access_time_sharp),
-                            SizedBox(width: 10,),
+                            const Icon(Icons.access_time_sharp),
+                            SizedBox(width: Dimensions.width10,),
                             Text(document['time'])
                           ],
                       ),
-                     SizedBox(height: 20,),
+                     SizedBox(height: Dimensions.height20,),
                       Text(
                         'Description :  '
                         + document['description'],
                           // 'We have been using this purifier from our 1st yr. It\'s not working from last 3 days. Do check on this and ensure it\'s working ',
                           style: GoogleFonts.poppins(
-                          fontSize: 15,
+                          fontSize: Dimensions.height15,
                           fontWeight: FontWeight.w500,
                           ),)
                     ],
@@ -158,43 +154,43 @@ class DetailsPage extends StatelessWidget {
    //popup
    Future popUpBox(BuildContext ctx) async
   {
-    print('working');
+    
     return showDialog(
       context: ctx,
           builder: (ctx1) {
       return 
           AlertDialog(
              
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(Dimensions.height25))),
             content: Container(
                width: MediaQuery.of(ctx).size.width,
-            height: 210,
-               padding: EdgeInsets.all(11.0),
+            height: Dimensions.height210,
+               padding: EdgeInsets.all(Dimensions.height11),
             color: Colors.white,
               child: ListView(
                 children: [
-                  Center(child: Text('Alert ⚠️',style: GoogleFonts.amaranth(fontSize: 30,fontWeight: FontWeight.bold))),
-                  SizedBox(height: 10,),
-                  Text('Do you need delete this complaint?',style: GoogleFonts.poppins(fontSize: 20,fontWeight: FontWeight.w500),),
-                  Text('You can\'t undo this action',style: GoogleFonts.poppins(fontSize: 18),),
-                  Divider(thickness: 1,),
+                  Center(child: Text('Alert ⚠️',style: GoogleFonts.amaranth(fontSize: Dimensions.height30,fontWeight: FontWeight.bold))),
+                  SizedBox(height: Dimensions.height10,),
+                  Text('Do you need delete this complaint?',style: GoogleFonts.poppins(fontSize: Dimensions.height20,fontWeight: FontWeight.w500),),
+                  Text('You can\'t undo this action',style: GoogleFonts.poppins(fontSize: Dimensions.height18),),
+                  Divider(thickness: Dimensions.height1,),
                   IntrinsicHeight(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextButton(onPressed: (){
                         Navigator.of(ctx).pop();
-                      }, child: Text('Close',style: GoogleFonts.poppins(fontSize: 15),)),
-                      VerticalDivider(thickness: 1,),
+                      }, child: Text('Close',style: GoogleFonts.poppins(fontSize: Dimensions.height15),)),
+                      VerticalDivider(thickness: Dimensions.height1,),
                       TextButton(onPressed: (){
                        ctrl.delComplaint(document);
                        Navigator.of(ctx).pop();
                        Navigator.of(ctx).pop();
-                      }, child: Text('Delete',style: GoogleFonts.poppins(fontSize:15,color: Colors.red),)),
+                      }, child: Text('Delete',style: GoogleFonts.poppins(fontSize:Dimensions.height15,color: Colors.red),)),
                       ],
                     ),
                   ),
-                    SizedBox(height: 20,),
+                    SizedBox(height: Dimensions.height20,),
                     
                 
               ]),

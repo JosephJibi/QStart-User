@@ -7,6 +7,7 @@ import 'package:lottie/lottie.dart';
 import 'package:qstart/Controller/deleteComplaintController.dart';
 import 'package:qstart/User/DetailsPage.dart';
 import 'package:qstart/utilities/colors.dart';
+import 'package:qstart/utilities/dimensions.dart';
 
 import '../Controller/AuthController.dart';
 
@@ -27,32 +28,32 @@ class UserScreenHome extends StatelessWidget {
       child: Column(children: [
         //first container(main 1)
         Container(
-          height: (ctrl.profiledata['complaint'] == 0) ? 280 : 230,
+          height: (ctrl.profiledata['complaint'] == 0) ? Dimensions.height280 : Dimensions.height230,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             gradient: AppColor().mainGradient,
           ),
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            const SizedBox(
-              height: 70,
+             SizedBox(
+              height: Dimensions.height70,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: 120,
-                  width: 120,
+                  height: Dimensions.height120,
+                  width: Dimensions.width120,
                   child: Image.asset(
                     'assets/images/logo.png',
                     fit: BoxFit.cover,
                   ),
                 ),
-                const Text(
+                 Text(
                   'QSTART',
                   style: TextStyle(
-                      color: Color.fromARGB(255, 77, 82, 89),
-                      letterSpacing: 2,
-                      fontSize: 40,
+                      color: const Color.fromARGB(255, 77, 82, 89),
+                      letterSpacing: Dimensions.height2,
+                      fontSize: Dimensions.height40,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Amaranth-Bold'),
                 )
@@ -66,15 +67,15 @@ class UserScreenHome extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                   color: Colors.grey[100],
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
+                  borderRadius:  BorderRadius.only(
+                    topLeft: Radius.circular(Dimensions.height30),
+                    topRight: Radius.circular(Dimensions.height30),
                   ),
-                  boxShadow: const [
+                  boxShadow:  [
                     BoxShadow(
-                      color: Color.fromARGB(255, 97, 85, 85),
-                      spreadRadius: 0.7,
-                      blurRadius: 15,
+                      color: const Color.fromARGB(255, 97, 85, 85),
+                      spreadRadius: Dimensions.height07,
+                      blurRadius: Dimensions.height15,
                     )
                   ]),
               //if complaint field of current user is null then we not need to use streambuilder because thatmeans user have not posted any complaints
@@ -106,19 +107,19 @@ class UserScreenHome extends StatelessWidget {
                           .snapshots(),
                       builder: (context, snapshot) {
                         if (!snapshot.hasData) {
-                          return Center(child: CircularProgressIndicator());
+                          return const Center(child: CircularProgressIndicator());
                         } else {
                           return ListView(
                             children: snapshot.data!.docs.map((document) {
                               if (ctrl.profiledata['complaint'] == 0 && ctrl2.flag==0) {
                                 ctrl2.flag++;
-                                print(ctrl2.flag);
-                               print('working');
-                               print(ctrl.profiledata['complaint']);
+                              //   print(ctrl2.flag);
+                              //  print('working');
+                              //  print(ctrl.profiledata['complaint']);
                                 return Column(
                                   children: [
                                     Container(
-                                      height: 280,
+                                      height: Dimensions.height280,
                                       child: Lottie.network(
                                           // 'https://assets6.lottiefiles.com/packages/lf20_zfnngl5k.json',
                                           'https://assets2.lottiefiles.com/packages/lf20_fmieo0wt.json',
@@ -128,7 +129,7 @@ class UserScreenHome extends StatelessWidget {
                                     Text(
                                       'You haven\'posted \n any complaints',
                                       style: GoogleFonts.poppins(
-                                          fontSize: 15,
+                                          fontSize: Dimensions.height15,
                                           fontWeight: FontWeight.w500),
                                     )
                                   ],
@@ -138,7 +139,7 @@ class UserScreenHome extends StatelessWidget {
                                   auth.currentUser?.email) {
                                 return cardsForListOfComplaint(document);
                               } else {
-                                return SizedBox();
+                                return const SizedBox();
                               }
                             }).toList(),
                           );
@@ -156,17 +157,17 @@ class UserScreenHome extends StatelessWidget {
         Get.to(DetailsPage(document));
       },
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding:  EdgeInsets.all(Dimensions.height8),
         child: Container(
-          height: 150,
-          width: 380,
+          height: Dimensions.height150,
+          width: Dimensions.width380,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderRadius: BorderRadius.all(Radius.circular(Dimensions.height10)),
               color: Colors.white,
               border: Border.all(
-                  color: Color.fromARGB(255, 159, 186, 218), width: 1)),
+                  color: const Color.fromARGB(255, 159, 186, 218), width: Dimensions.height1)),
           child: Padding(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.all(Dimensions.height20),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,13 +178,13 @@ class UserScreenHome extends StatelessWidget {
                         document['title'],
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 25),
+                            fontWeight: FontWeight.bold, fontSize: Dimensions.height25),
                       ),
                       const Spacer(),
                       Container(
                           decoration: BoxDecoration(
                             borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
+                                 BorderRadius.all(Radius.circular(Dimensions.height10)),
                             color: (document['status'] == 'Requested')
                                 ? AppColor.requestedColour
                                 : (document['status'] == 'Processing')
@@ -198,14 +199,14 @@ class UserScreenHome extends StatelessWidget {
                                                 : AppColor.doneColour,
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(Dimensions.height8),
                             child: Text(document['status']),
                           )),
                     ],
                   ),
                   //sizedbox between title row and description
                   SizedBox(
-                    height: 5,
+                    height: Dimensions.height5,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -217,10 +218,10 @@ class UserScreenHome extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       SizedBox(
-                        height: 5,
+                        height: Dimensions.height5,
                       ),
                       Divider(
-                        thickness: 1,
+                        thickness: Dimensions.height1,
                       ),
                       IntrinsicHeight(
                         child: Row(
@@ -229,17 +230,17 @@ class UserScreenHome extends StatelessWidget {
                               document['locationhint'],
                               overflow: TextOverflow.ellipsis,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             VerticalDivider(
                               // color: Colors.black,  //color of divider
                               // width: 10, //width space of divider
-                              thickness: 2, //thickness of divier line
+                              thickness: Dimensions.height2, //thickness of divier line
                               // indent: 1, //Spacing at the top of divider.
                               // endIndent: 1, //Spacing at the bottom of divider.
                             ),
-                            Icon(Icons.calendar_month_outlined),
+                            const Icon(Icons.calendar_month_outlined),
                             SizedBox(
-                              width: 5,
+                              width: Dimensions.width5,
                             ),
                             Text(document['date'])
                           ],

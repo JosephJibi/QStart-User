@@ -1,36 +1,29 @@
-import 'dart:math';
-
-import 'package:flutter/animation.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:qstart/Controller/AuthController.dart';
+import 'package:qstart/utilities/dimensions.dart';
 
 class UserProfile extends StatelessWidget {
   UserProfile({super.key});
 
   final ctrl = Get.put(AuthController());
-  
+
   @override
   Widget build(BuildContext context) {
     //add to profile image var of obs
-      ctrl.profimg.value=ctrl.profiledata['profileimg'];
+    ctrl.profimg.value = ctrl.profiledata['profileimg'];
 
     return Container(
       child: SafeArea(
-        child: ListView(physics: BouncingScrollPhysics(), children: [
+        child: ListView(physics: const BouncingScrollPhysics(), children: [
           Column(children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 IconButton(
-                    onPressed: () {
-                      print(ctrl.docs);
-                    },
+                    onPressed: () {},
                     icon: const FaIcon(
                         color: Color.fromARGB(255, 58, 73, 99),
                         FontAwesomeIcons.circleInfo))
@@ -40,76 +33,83 @@ class UserProfile extends StatelessWidget {
               children: [
                 //rounded image view container
                 Container(
-                  
-                  height: 190,
-                  width: 170,
+                  height: Dimensions.height190,
+                  width: Dimensions.width170,
                   child: Obx(
-                    ()=>ClipRRect(
-                        borderRadius: BorderRadius.circular(900),       //
-                        child: (ctrl.profimg.value=='')?
-                        Image.asset(
-                            fit: BoxFit.cover, 'assets/images/default.png'):
-                            Image.network(ctrl.profimg.value,fit: BoxFit.cover,)
-                            ),
+                    () => ClipRRect(
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.height900),
+                        child: (ctrl.profimg.value == '')
+                            ? Image.asset(
+                                fit: BoxFit.cover, 'assets/images/default.png')
+                            : Image.network(
+                                ctrl.profimg.value,
+                                fit: BoxFit.cover,
+                              )),
                   ),
                 ),
                 Positioned(
-                            top: 140,                       //
-                            left: 120,                      //
-                            child: IconButton(
-                                  onPressed: (){
-                                    print('working 1');
-                                    ctrl.addProfileImage();
-                                    print('working 2');
-                                  },
-                                  icon: Icon(
-                                    FontAwesomeIcons.cameraRetro,
-                                    size: 28,
-                                  )),
-                            
-                          ),
+                  top: Dimensions.height140, //
+                  left: Dimensions.height210, //
+                  child: IconButton(
+                      onPressed: () {
+                        ctrl.addProfileImage();
+                      },
+                      icon: Icon(
+                        FontAwesomeIcons.cameraRetro,
+                        size: Dimensions.height28,
+                      )),
+                ),
               ],
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: Dimensions.height10,
+            ),
             Text(ctrl.profiledata['username'],
                 style: TextStyle(
-                    letterSpacing: 2,
-                    fontSize: 35,
+                    letterSpacing: Dimensions.height2,
+                    fontSize: Dimensions.height35,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Amaranth-Bold')),
             Text(ctrl.profiledata['type'],
                 style: GoogleFonts.firaSans(
-                  fontSize: 25,
+                  fontSize: Dimensions.height25,
                 )),
             SizedBox(
-              height: 20,
+              height: Dimensions.height20,
             ),
             IntrinsicHeight(
               child: Padding(
-                padding: const EdgeInsets.only(right: 20, left: 20),
+                padding: EdgeInsets.only(
+                    right: Dimensions.width20, left: Dimensions.width20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Column(
                       children: [
-                        Text('3',
+                        Text('${ctrl.profiledata['complaint']}',
                             style: GoogleFonts.firaSans(
-                                fontSize: 25, fontWeight: FontWeight.w500)),
+                                fontSize: Dimensions.height25,
+                                fontWeight: FontWeight.w500)),
                         Text('Complaints',
-                            style: GoogleFonts.firaSans(fontSize: 20)),
+                            style: GoogleFonts.firaSans(
+                                fontSize: Dimensions.height20)),
                       ],
                     ),
                     VerticalDivider(
-                      thickness: 2, //thickness of divier line
+                      thickness: Dimensions.height2, //thickness of divier line
                     ),
                     Column(
                       children: [
                         Text(
-                          '1',
+                          '${ctrl.profiledata['donecount']}',
                           style: GoogleFonts.firaSans(
-                              fontSize: 25, fontWeight: FontWeight.w500),
+                              fontSize: Dimensions.height25,
+                              fontWeight: FontWeight.w500),
                         ),
-                        Text('Done', style: GoogleFonts.firaSans(fontSize: 20)),
+                        Text('Done',
+                            style: GoogleFonts.firaSans(
+                                fontSize: Dimensions.height20)),
                       ],
                     ),
                   ],
@@ -119,23 +119,23 @@ class UserProfile extends StatelessWidget {
 
             //
             SizedBox(
-              height: 20,
+              height: Dimensions.height20,
             ),
             card(
                 title: 'E-mail',
                 // content: 'josephjibi33@gmail.com',
                 content: ctrl.profiledata['email'],
-                cardicon: Icon(Icons.mail)),
+                cardicon: const Icon(Icons.mail)),
             card(
                 title: 'Phone No.',
                 // content: '9496035739',
                 content: ctrl.profiledata['phoneNo'],
-                cardicon: Icon(Icons.phone)),
+                cardicon: const Icon(Icons.phone)),
             card(
                 title: 'Unique id',
                 // content: '5445',
                 content: ctrl.profiledata['uniqueNo'],
-                cardicon: Icon(Icons.numbers)),
+                cardicon: const Icon(Icons.numbers)),
 
             GestureDetector(
               onTap: () {
@@ -143,18 +143,20 @@ class UserProfile extends StatelessWidget {
                 ctrl.signout();
               },
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                padding: const EdgeInsets.all(20),
+                margin: EdgeInsets.symmetric(
+                    horizontal: Dimensions.width14,
+                    vertical: Dimensions.height10),
+                padding: EdgeInsets.all(Dimensions.height20),
                 decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 39, 183, 240),
-                    borderRadius: BorderRadius.circular(12)),
-                child: const Center(
+                    borderRadius: BorderRadius.circular(Dimensions.height12)),
+                child: Center(
                     child: Text(
                   'Log out',
                   style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      fontSize: 18),
+                      fontSize: Dimensions.height18),
                 )),
               ),
             ),
@@ -166,20 +168,21 @@ class UserProfile extends StatelessWidget {
 
   Card card({String? title, String? content, Icon? cardicon}) {
     return Card(
-      color: Color.fromARGB(255, 244, 245, 245),
-      elevation: 5.0,
-      margin: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      color: const Color.fromARGB(255, 244, 245, 245),
+      elevation: Dimensions.height5,
+      margin: EdgeInsets.symmetric(
+          horizontal: Dimensions.width14, vertical: Dimensions.height10),
       child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(Dimensions.height10),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(title!,
                 style: GoogleFonts.poppins(
-                    color: Color.fromARGB(255, 126, 124, 124))),
-            SizedBox(height: 5.0),
+                    color: const Color.fromARGB(255, 126, 124, 124))),
+            SizedBox(height: Dimensions.height5),
             Row(children: [
               cardicon!,
-              SizedBox(width: 10.0),
+              SizedBox(width: Dimensions.width5),
               Text(content!, style: GoogleFonts.poppins()),
             ]),
           ])),

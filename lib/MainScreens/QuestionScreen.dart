@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:qstart/MainScreens/RegistrationScreen.dart';
+import 'package:qstart/utilities/dimensions.dart';
 
 import '../Controller/AuthController.dart';
 
@@ -25,22 +23,22 @@ class QuestionScreen extends StatelessWidget {
       body: SafeArea(
           child: Column(
         children: [
-          const SizedBox(
-            height: 30, // +#
+           SizedBox(
+            height: Dimensions.height30, 
           ),
           //text
-          const Text('Who are you ?',
+           Text('Who are you ?',
               style: TextStyle(
-                  letterSpacing: 2,
-                  fontSize: 35,
+                  letterSpacing: Dimensions.height2,
+                  fontSize: Dimensions.height35,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Amaranth-Bold')),
-          const SizedBox(
-            height: 20,
+           SizedBox(
+            height: Dimensions.height20,
           ), // +#
           //photo container
           Container(
-            height: 300, // +#
+            height: Dimensions.height300, // +#
             width: MediaQuery.of(context).size.width, // +#
             child: Image.asset(
               'assets/images/LottieQuestion.gif',
@@ -48,13 +46,13 @@ class QuestionScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+            padding:  EdgeInsets.symmetric(horizontal: Dimensions.width20,vertical: Dimensions.height20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               
               children: [
             
-            SizedBox(height: 30,),        //+#
+            SizedBox(height: Dimensions.height30,),        
             //row for student?
             Obx(
               () =>  Row(
@@ -72,10 +70,10 @@ class QuestionScreen extends StatelessWidget {
                   Text(
                     'I\'m a student   ',
                     style: GoogleFonts.firaSans(
-                      fontSize: 20,
+                      fontSize: Dimensions.height20,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   if(ctr1.isCheckedStudent.value== true)
                   //  Icon(
                   //   Icons.check,
@@ -86,8 +84,8 @@ class QuestionScreen extends StatelessWidget {
                   animate: true,
                   repeat: false,
                   fit: BoxFit.cover,
-                  height: 80,
-                  width: 90
+                  height: Dimensions.height80,
+                  width: Dimensions.width90
                   )
                 ],
               ),
@@ -110,10 +108,10 @@ class QuestionScreen extends StatelessWidget {
                   Text(
                     'I\'m a Employee',
                     style: GoogleFonts.firaSans(
-                      fontSize: 20,
+                      fontSize: Dimensions.height20,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   if(ctr1.isCheckedEmployee.value==true)
                   //  Icon(
                   //   Icons.check,
@@ -124,8 +122,8 @@ class QuestionScreen extends StatelessWidget {
                   animate: true,
                   repeat: false,
                   fit: BoxFit.cover,
-                  height: 80,
-                  width: 90
+                  height: Dimensions.height80,
+                  width: Dimensions.width90
                   )
                 ],
               ),
@@ -147,10 +145,10 @@ class QuestionScreen extends StatelessWidget {
                   Text(
                     'I\'m a Worker     ',
                     style: GoogleFonts.firaSans(
-                      fontSize: 20,
+                      fontSize: Dimensions.height20,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   if(ctr1.isCheckedWorker.value==true)
                   //  Icon(
                   //   Icons.check,
@@ -161,8 +159,8 @@ class QuestionScreen extends StatelessWidget {
                   animate: true,
                   repeat: false,
                   fit: BoxFit.cover,
-                  height: 80,
-                  width: 90
+                  height: Dimensions.height80,
+                  width: Dimensions.width90
                   ),
                 ],
               ),
@@ -173,23 +171,23 @@ class QuestionScreen extends StatelessWidget {
                 ontaponNext();
               } ,
                child: Container(
-                          padding: const EdgeInsets.all(20),
+                          padding:  EdgeInsets.all(Dimensions.height20),
                           decoration: BoxDecoration(
                               color: const Color.fromARGB(255, 39, 183, 240),
                               borderRadius: BorderRadius.circular(12)),
                           child:  Center(
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
+                                children:  [
                                    Text(
                             'Next ',
                             
                             style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 18),
+                                    fontSize: Dimensions.height20),
                           ),
-                          Icon(Icons.arrow_forward,color: Colors.white,),
+                          const Icon(Icons.arrow_forward,color: Colors.white,),
                                 ],
                               )),
                         ),

@@ -1,14 +1,10 @@
 import 'dart:io';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
-import 'package:qstart/Controller/AuthController.dart';
 import 'package:qstart/Controller/complaintController.dart';
 import 'package:qstart/utilities/colors.dart';
+import 'package:qstart/utilities/dimensions.dart';
 import 'package:qstart/utilities/inputBox.dart';
 
 class AddComplaint extends StatelessWidget {
@@ -33,7 +29,7 @@ class AddComplaint extends StatelessWidget {
                 children: [
                   //sized box for get logo on correct position(instead of appbar)
                   SizedBox(
-                    height: 59,
+                    height: Dimensions.height59,
                   ),
                   //row which hold logo and main name
                   Row(
@@ -41,33 +37,33 @@ class AddComplaint extends StatelessWidget {
                     children: [
                       Container(
                         //logo container
-                        height: 100,
-                        width: 100,
+                        height: Dimensions.height100,
+                        width: Dimensions.width100,
                         child: Image.asset(
                           'assets/images/logo.png',
                           fit: BoxFit.cover,
                         ),
                       ),
-                      const Text(             //App Name
+                       Text(             //App Name
                           'QSTART',
                           style: TextStyle(
-                              color: Color.fromARGB(255, 77, 82, 89),
-                              letterSpacing: 2,
-                              fontSize: 40,
+                              color: const Color.fromARGB(255, 77, 82, 89),
+                              letterSpacing: Dimensions.height2,
+                              fontSize: Dimensions.height40,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Amaranth-Bold'),
                         ),
                     ],
                   ),
                   //sizedbox between logo and file a complaint text
-                  SizedBox(height: 30,),
+                  SizedBox(height: Dimensions.height30,),
                   Text('File a Complaint',
                       style: GoogleFonts.anybody(
-                          color: Color.fromARGB(255, 67, 77, 82),
-                          fontSize: 30)),
+                          color: const Color.fromARGB(255, 67, 77, 82),
+                          fontSize: Dimensions.height30)),
                   //sized box to move the second container little down
                   SizedBox(
-                    height: 30,
+                    height: Dimensions.height30,
                   )
                 ],
               ),
@@ -78,80 +74,80 @@ class AddComplaint extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     color: Colors.grey[200],
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30),
+                    borderRadius:  BorderRadius.only(
+                      topLeft: Radius.circular(Dimensions.height30),
+                      topRight: Radius.circular(Dimensions.height30),
                     ),
-                    boxShadow: const [
+                    boxShadow:  [
                       BoxShadow(
-                        color: Color.fromARGB(255, 97, 85, 85),
-                        spreadRadius: 1,
-                        blurRadius: 15,
+                        color: const Color.fromARGB(255, 97, 85, 85),
+                        spreadRadius: Dimensions.height1,
+                        blurRadius: Dimensions.height15,
                       )
                     ]),
                 //main column of second container
                 child: SingleChildScrollView(
 
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   child: Column(
                     children: [
                       
                       //title textfield
                       Padding(
-                        padding: const EdgeInsets.only(
-                            top: 30.0, right: 25.0, left: 25.0),
+                        padding:  EdgeInsets.only(
+                            top: Dimensions.height30, right: Dimensions.height25, left: Dimensions.height25),
                         child: TextFormField(
                           // maxLength: 18,
                           controller:ctrl.title ,
                           decoration: inputBoxes()
                               .maininputDecoration
-                              .copyWith(label: Text('Title')),
+                              .copyWith(label: const Text('Title')),
                         ),
                       ), 
                       //sizedbox between title and location textfield
                       SizedBox(
-                        height: 10,
+                        height: Dimensions.height10,
                       ),
                 
                       //location hint
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        padding:  EdgeInsets.symmetric(horizontal: Dimensions.width25),
                         child: TextFormField(
                           controller: ctrl.locationhint,
                           decoration: inputBoxes()
                               .maininputDecoration
-                              .copyWith(label: Text('Location hint')),
+                              .copyWith(label: const Text('Location hint')),
                         ),
                       ),
                       //sizedbox between location and description  textfield
                       SizedBox(
-                        height: 10,
+                        height: Dimensions.height10,
                       ),
                       //description box
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        padding:  EdgeInsets.symmetric(horizontal: Dimensions.width25),
                         child: TextFormField(
                           controller: ctrl.description,
                           maxLines: 4,
                           keyboardType: TextInputType.multiline,
                           decoration: inputBoxes()
                               .maininputDecoration
-                              .copyWith(label: Text('Description')),
+                              .copyWith(label: const Text('Description')),
                         ),
                       ),
                           //sizedbox between description textbox and add image stack
-                      SizedBox(height: 15,),
+                      SizedBox(height: Dimensions.height15,),
                       //image add stack
                        Stack(
                       
                         children: [
                           //image container
                           Container(
-                height: 190,
-                width: 170,
+                height: Dimensions.height190,
+                width: Dimensions.width170,
                 child: Obx(
                   ()=> ClipRRect(
-                      borderRadius: BorderRadius.circular(30),          //
+                      borderRadius: BorderRadius.circular(Dimensions.height30),          //
                       child: 
                       (ctrl.loadimgusingpath.value=='')?
                       Image.asset(
@@ -168,8 +164,8 @@ class AddComplaint extends StatelessWidget {
                 )),
                     //image add icon
                           Positioned(
-                            top: 140,                       //
-                            left: 120,                      //
+                            top: Dimensions.height140,                       //
+                            left: Dimensions.width120,                      //
                             child: Obx(
                               ()=> IconButton(
                                   onPressed: (){
@@ -177,27 +173,27 @@ class AddComplaint extends StatelessWidget {
                                     ctrl.accessImage():
                                     
                                     ctrl.loadimgusingpath.value='';
-                                    print(ctrl.loadimgusingpath.value);
+                        
                                   },
                                   icon: Icon(
                                     // FontAwesomeIcons.cameraRetro,
                                     (ctrl.loadimgusingpath.value=='')?
                                     Icons.image:
                                     Icons.delete,
-                                    size: 28,
+                                    size: Dimensions.height28,
                                   )),
                             ),
                           ),
                           SizedBox(
-                            width: 17,
+                            width: Dimensions.width17,
                           ),
                         ],
                       ),
-                       SizedBox(height: 15,),
+                       SizedBox(height: Dimensions.height15,),
                       //sizedbox between camera icon(for add image) and add button
                       //submit button
                       Padding(
-                        padding: const EdgeInsets.only(right: 25.0, left: 25.0),
+                        padding:  EdgeInsets.only(right: Dimensions.width25, left: Dimensions.width25),
                         child: GestureDetector(
                           onTap: (){
                             ctrl.AddComplaint();
@@ -208,19 +204,19 @@ class AddComplaint extends StatelessWidget {
                           },
                           child: Obx(
                            ()=> Container(
-                              padding: const EdgeInsets.all(20),
+                              padding:  EdgeInsets.all(Dimensions.height20),
                               decoration: BoxDecoration(
                                   color: const Color.fromARGB(255, 39, 183, 240),
-                                  borderRadius: BorderRadius.circular(12)),
+                                  borderRadius: BorderRadius.circular(Dimensions.height12)),
                               child:  Center(
                                   child: (ctrl.loading.value)?
                                   const CircularProgressIndicator(color: Colors.white,):
-                                  const Text(
+                                   Text(
                                 'Submit',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 18),
+                                    fontSize: Dimensions.height18),
                               )),
                             ),
                           ),
@@ -229,7 +225,7 @@ class AddComplaint extends StatelessWidget {
                   
                     
                    
-                      SizedBox(height: 100,),
+                      SizedBox(height: Dimensions.height100,),
                     ],
                   ),
                 ),
