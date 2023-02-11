@@ -12,6 +12,7 @@ import 'package:qstart/MainScreens/verificationScreen.dart';
 import 'package:qstart/Models/authUserModel.dart';
 import 'package:qstart/User/UserNavScreen.dart';
 import 'package:qstart/User/UserScreenHome.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthController extends GetxController{
 
@@ -78,7 +79,10 @@ class AuthController extends GetxController{
     await verifyemail();
     await profiledetails();
      await auth.signInWithEmailAndPassword(email: loginemail.text, password: loginpass.text);
-     
+     SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString("uid", "${auth.currentUser!.uid}");
+      String? id=prefs.getString("uid");
+      print(id);
     // Get.offAll(UserNavScreen());
     Get.offAll(VerificationScreen());
     loading.value=false;
@@ -115,6 +119,8 @@ class AuthController extends GetxController{
     print(auth.currentUser?.email);
     loginemail.clear();
     loginpass.clear();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.clear();
     Get.offAll(LoginScreen());
   }
 
@@ -123,6 +129,8 @@ class AuthController extends GetxController{
     try{
       loading.value= true;
       await auth.signInWithEmailAndPassword(email: loginemail.text, password: loginpass.text);
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString("uid", auth.currentUser!.uid);
       await profiledetails();
       // Get.offAll(UserNavScreen());
       if(!auth.currentUser!.emailVerified)

@@ -42,10 +42,15 @@ class UserProfile extends StatelessWidget {
                         child: (ctrl.profimg.value == '')
                             ? Image.asset(
                                 fit: BoxFit.cover, 'assets/images/default.png')
-                            : Image.network(
-                                ctrl.profimg.value,
-                                fit: BoxFit.cover,
-                              )),
+                            : FadeInImage
+                            (
+                              image: NetworkImage(
+                                  ctrl.profimg.value,
+                                 
+                                ),
+                                placeholder: const AssetImage( 'assets/images/imageloading.gif'),
+                                 fit: BoxFit.cover,
+                            )),
                   ),
                 ),
                 Positioned(

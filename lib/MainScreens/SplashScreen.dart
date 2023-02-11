@@ -1,8 +1,14 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qstart/MainScreens/LoginScreen.dart';
+import 'package:qstart/MainScreens/verificationScreen.dart';
+import 'package:qstart/User/UserNavScreen.dart';
 import 'package:qstart/utilities/dimensions.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../Controller/AuthController.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,11 +18,29 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+  //authcontroller instance
+   final ctrl = Get.put(AuthController());
+    //auth
+   FirebaseAuth auth = FirebaseAuth.instance;
+  String? userUid;
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 5), () {
-      Get.offAll(LoginScreen());
+    getUid().whenComplete(() {
+        Timer(const Duration(seconds: 3), () {
+            if(userUid==null){
+           
+              Get.offAll(LoginScreen());
+            }
+            else{
+
+              Get.offAll(const UserNavScreen());
+            }
+         
+      
+                
+    });
     });
   }
 
@@ -27,13 +51,11 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            child: Image.asset(
-              "assets/images/logo.png",
-              height: MediaQuery.of(context).size.height /5,
-              width: MediaQuery.of(context).size.width/5,
-              fit: BoxFit.cover,
-            ),
+          Image.asset(
+            "assets/images/logo.png",
+            height: MediaQuery.of(context).size.height /5,
+            width: MediaQuery.of(context).size.width/5,
+            fit: BoxFit.cover,
           ),
           Text(
             'QSTART',
@@ -50,5 +72,14 @@ class _SplashScreenState extends State<SplashScreen> {
         ],
       )),
     );
+  }
+  Future getUid()async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    userUid= prefs.getString("uid");
+    if(userUid!= null){
+        await ctrl.profiledetails();
+    }
+    
+
   }
 }
