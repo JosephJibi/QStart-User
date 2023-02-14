@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:qstart/MainScreens/LoginScreen.dart';
 import 'package:qstart/MainScreens/QuestionScreen.dart';
@@ -11,10 +13,15 @@ import 'package:qstart/User/DetailsPage.dart';
 import 'package:qstart/User/UserNavScreen.dart';
 import 'package:qstart/User/UserScreenHome.dart';
 import 'package:qstart/utilities/dimensions.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Controller/AuthController.dart';
+
+  
 void main(List<String> args)async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   runApp(MyApp());
 
 }

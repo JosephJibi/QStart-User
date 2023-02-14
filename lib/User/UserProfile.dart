@@ -38,7 +38,7 @@ class UserProfile extends StatelessWidget {
                   child: Obx(
                     () => ClipRRect(
                         borderRadius:
-                            BorderRadius.circular(Dimensions.height900),
+                            BorderRadius.circular(Dimensions.height50),
                         child: (ctrl.profimg.value == '')
                             ? Image.asset(
                                 fit: BoxFit.cover, 'assets/images/default.png')
@@ -54,8 +54,8 @@ class UserProfile extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: Dimensions.height140, //
-                  left: Dimensions.height210, //
+                  top:Dimensions.height140, //
+                  left: Dimensions.height130, //
                   child: IconButton(
                       onPressed: () {
                         ctrl.addProfileImage();

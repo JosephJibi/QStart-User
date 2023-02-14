@@ -91,6 +91,7 @@ class complaintController extends GetxController{
     userid: auth.currentUser?.uid,
     useremail: auth.currentUser?.email,
     img: imgUrl,
+    workerid: ''
     );
 
     //add to database

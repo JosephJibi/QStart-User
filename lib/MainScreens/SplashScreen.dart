@@ -9,6 +9,7 @@ import 'package:qstart/utilities/dimensions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Controller/AuthController.dart';
+import '../Controller/deleteComplaintController.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,7 +19,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
+  final ctrl2 = Get.put(deleteComplaint());
   //authcontroller instance
    final ctrl = Get.put(AuthController());
     //auth
@@ -32,10 +33,12 @@ class _SplashScreenState extends State<SplashScreen> {
             if(userUid==null){
            
               Get.offAll(LoginScreen());
+              ctrl2.flag=0;
             }
             else{
 
               Get.offAll(const UserNavScreen());
+              ctrl2.flag=0;
             }
          
       

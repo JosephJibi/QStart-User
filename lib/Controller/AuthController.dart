@@ -38,7 +38,7 @@ class AuthController extends GetxController{
   //question screen
   var isCheckedStudent = false.obs;
   var isCheckedEmployee = false.obs;
-  var isCheckedWorker = false.obs;
+
   //type of user(Employee,student,worker)
   String? type;
   // create controller:
@@ -78,17 +78,23 @@ class AuthController extends GetxController{
     await auth.createUserWithEmailAndPassword(email: registeremail.text, password: registerpass.text);
     await addUser();
     await verifyemail();
+    await auth.signInWithEmailAndPassword(email: registeremail.text, password: registerpass.text);
     await profiledetails();
-     await auth.signInWithEmailAndPassword(email: loginemail.text, password: loginpass.text);
+
      SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString("uid", "${auth.currentUser!.uid}");
       String? id=prefs.getString("uid");
       print(id);
+      print('working');
     // Get.offAll(UserNavScreen());
     Get.offAll(VerificationScreen());
     loading.value=false;
     registeremail.clear();
     registerpass.clear();
+    username.clear();
+    dep.clear();
+    uniqueNo.clear();
+    phoneNo.clear();
     }
     catch(e){
       Get.snackbar("Error", "$e");
@@ -224,7 +230,7 @@ class AuthController extends GetxController{
     //creating a unique file name to image using datetime.now() function
     String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
     Reference referenceRoot = FirebaseStorage.instance.ref();
-    Reference referenceDir = referenceRoot.child('ProfileImages');
+    Reference referenceDir = referenceRoot.child('UserProfileImages');
     if(profiledata['profileimg']!=''){
       // Reference refdelete = referenceDir.child(profiledata['profileimg']);
       await FirebaseStorage.instance.refFromURL(profiledata['profileimg']).delete();
@@ -248,6 +254,7 @@ class AuthController extends GetxController{
       
       print('$imgUrl');
       Get.snackbar('Success 👍', 'Profile photo uploaded successfully\n It will take some to display changes');
+      profiledetails();
     }
     catch(e){
         Get.snackbar('Error', '$e');

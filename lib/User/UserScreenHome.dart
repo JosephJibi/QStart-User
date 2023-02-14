@@ -107,11 +107,14 @@ class UserScreenHome extends StatelessWidget {
                           .orderBy('date',descending: false)
                           .snapshots(),
                       builder: (context, snapshot) {
+                        print('working');
                         if (!snapshot.hasData) {
                           return const Center(child: CircularProgressIndicator());
                         } else {
                           return ListView(
                             children: snapshot.data!.docs.map((document) {
+                              print('working2');
+                              print(ctrl2.flag);
                               if (ctrl.profiledata['complaint'] == 0 && ctrl2.flag==0) {
                                 ctrl2.flag++;
                               //   print(ctrl2.flag);

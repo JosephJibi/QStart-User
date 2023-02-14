@@ -1,7 +1,7 @@
 class complaintModel
 {
-  String? title,locationhint,description,img,status,statusreport,date,time,userid,useremail;
-  complaintModel({this.title,this.locationhint,this.description,this.date,this.time,this.status,this.userid,this.useremail,this.img});
+  String? title,locationhint,description,img,status,statusreport,date,time,userid,useremail,workerid;
+  complaintModel({this.title,this.locationhint,this.description,this.date,this.time,this.status,this.userid,this.useremail,this.img,this.workerid});
 
   //to method
   Map<String,dynamic> toMap(){
@@ -15,6 +15,7 @@ class complaintModel
       "status":status,
       "userid":userid,
       "img":img,
+      "workerid":workerid,
     };
   }
 

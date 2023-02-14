@@ -24,7 +24,7 @@ class QuestionScreen extends StatelessWidget {
           child: Column(
         children: [
            SizedBox(
-            height: Dimensions.height30, 
+            height: Dimensions.height40, 
           ),
           //text
            Text('Who are you ?',
@@ -34,7 +34,7 @@ class QuestionScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Amaranth-Bold')),
            SizedBox(
-            height: Dimensions.height20,
+            height: Dimensions.height30,
           ), // +#
           //photo container
           Container(
@@ -46,7 +46,7 @@ class QuestionScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding:  EdgeInsets.symmetric(horizontal: Dimensions.width20,vertical: Dimensions.height20),
+            padding:  EdgeInsets.symmetric(horizontal: Dimensions.width20,vertical: Dimensions.height40),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               
@@ -64,7 +64,7 @@ class QuestionScreen extends StatelessWidget {
                       
                           ctr1.isCheckedStudent.value = value!;
                           ctr1.isCheckedEmployee.value = false;
-                          ctr1.isCheckedWorker.value = false;
+                          
                       
                       }),
                   Text(
@@ -102,7 +102,7 @@ class QuestionScreen extends StatelessWidget {
                  
                           ctr1.isCheckedEmployee.value = value!;
                           ctr1.isCheckedStudent.value =false;
-                          ctr1.isCheckedWorker.value =false;
+                          
                       
                       }),
                   Text(
@@ -128,43 +128,7 @@ class QuestionScreen extends StatelessWidget {
                 ],
               ),
             ),
-            //row for Worker?
-            Obx(
-              () =>  Row(
-                
-                children: [
-                  Checkbox(
-                      value: ctr1.isCheckedWorker.value,
-                      onChanged: (bool? value) {
-                    
-                          ctr1.isCheckedWorker.value = value!;
-                          ctr1.isCheckedStudent.value = false;
-                          ctr1.isCheckedEmployee.value=false;
-                      
-                      }),
-                  Text(
-                    'I\'m a Worker     ',
-                    style: GoogleFonts.firaSans(
-                      fontSize: Dimensions.height20,
-                    ),
-                  ),
-                  const Spacer(),
-                  if(ctr1.isCheckedWorker.value==true)
-                  //  Icon(
-                  //   Icons.check,
-                  //   color: Colors.green,
-                  //   size: 30,
-                  // ),
-                  Lottie.network("https://assets8.lottiefiles.com/packages/lf20_AWGRRVDFNv.json",
-                  animate: true,
-                  repeat: false,
-                  fit: BoxFit.cover,
-                  height: Dimensions.height80,
-                  width: Dimensions.width90
-                  ),
-                ],
-              ),
-            ),
+            SizedBox(height: Dimensions.height20,),
             //next button
              GestureDetector(
               onTap: () {
@@ -208,9 +172,7 @@ class QuestionScreen extends StatelessWidget {
                 else if(ctr1.isCheckedEmployee.value){
                   ctr1.type = "Employee";
                 }
-                else if(ctr1.isCheckedWorker.value){
-                  ctr1.type = "Worker";
-                }
+                
                 if(ctr1.type != null){
                   Get.to(RegistrationScreen());
                 }
