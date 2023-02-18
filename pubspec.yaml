@@ -38,7 +38,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts:
   curved_navigation_bar: ^1.0.3
-  google_nav_bar: ^5.0.6
   cloud_firestore: ^4.3.1
   firebase_core: ^2.4.1
   firebase_auth: ^4.2.4
@@ -48,7 +47,6 @@ dependencies:
   intl: ^0.17.0
   image_picker: ^0.8.6+1
   firebase_storage: ^11.0.10
-  pull_to_refresh: ^2.0.0
   shared_preferences: ^2.0.17
   
 
