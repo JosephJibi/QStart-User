@@ -143,8 +143,14 @@ class DetailsPage extends StatelessWidget {
                           style: GoogleFonts.poppins(
                           fontSize: Dimensions.height15,
                           fontWeight: FontWeight.w500,
-                          ),)
-                    ],
+                          ),),
+                        SizedBox(height: Dimensions.height15,),
+                        //display declined or pending message
+                    (document['declinemsg']!='')? Text('Pending due to :'+document['declinemsg'],style: GoogleFonts.poppins(fontSize: Dimensions.height15,color: Color.fromARGB(255, 71, 83, 90)),):
+                    (document['pendingmsg']!='')? Text('Pending due to :'+document['pendingmsg'],style: GoogleFonts.poppins(fontSize: Dimensions.height15,color: Color.fromARGB(255, 71, 83, 90)),):
+                      SizedBox(), 
+                   
+                     ],
                   ),
                 ),
               ],
