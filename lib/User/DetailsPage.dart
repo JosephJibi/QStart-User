@@ -100,7 +100,7 @@ class DetailsPage extends StatelessWidget {
                                                 AppColor.declainedColour:
                                                 (document['status']=='Pending')?
                                                 AppColor.pendingColour:
-                                                (document['status']=='Done Verified')?
+                                                (document['status']=='Verified')?
                                                 AppColor.doneVerifiedColour:
                                                 AppColor.doneColour
                                                 ,),
@@ -186,7 +186,17 @@ class DetailsPage extends StatelessWidget {
                       }, child: Text('Close',style: GoogleFonts.poppins(fontSize: Dimensions.height15),)),
                       VerticalDivider(thickness: Dimensions.height1,),
                       TextButton(onPressed: (){
-                       ctrl.delComplaint(document);
+                      if(document['status']=='Requested'){
+
+                      print('Delete...................');
+                       ctrl.delComplaint(document.id);
+                      }
+                      else if(document['status']=='Declined'){
+                          Get.snackbar('Permission Denied ⚠️', 'Your complaint is already declined, You can\'t delete it now...');
+                      }
+                      else{
+                        Get.snackbar('Permission Denied ⚠️', 'Your complaint is under process, You can\'t delete it now...');
+                      }
                        Navigator.of(ctx).pop();
                        Navigator.of(ctx).pop();
                       }, child: Text('Delete',style: GoogleFonts.poppins(fontSize:Dimensions.height15,color: Colors.red),)),

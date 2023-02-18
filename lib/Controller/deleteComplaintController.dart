@@ -16,15 +16,21 @@ class deleteComplaint extends GetxController{
    final ctrl = Get.put(AuthController());
    
   delComplaint(
-    QueryDocumentSnapshot document
+   var complaintid
   )async{
+    DocumentSnapshot  document= await db.collection('complaint').doc(complaintid).get();
+   
+
+
+
+   
     //calling constructor of delete complaint class
     DeletedComplaintModel addcomplaint= DeletedComplaintModel(
      title:document['title'],
      locationhint:document['locationhint'],
     description:document['description'],
-    deldate: DateFormat("hh:mm a").format(DateTime.now()),
-    deltime:  DateFormat("dd-MM-yyyy").format(DateTime.now()),
+    deldate:   DateFormat("dd-MM-yyyy").format(DateTime.now()),
+    deltime: DateFormat("hh:mm a").format(DateTime.now()),
     status: document['status'],
     userid: document['userid'],
     useremail: document['useremail'],
@@ -40,15 +46,18 @@ class deleteComplaint extends GetxController{
       .doc(ctrl.docs)
       .update({"complaint": FieldValue.increment(-1)});
 
-    db.collection("complaint").where("userid",isEqualTo: document['userid']).get().then((QuerySnapshot) => 
-           QuerySnapshot.docs.forEach((doc){
-            doc.reference.delete();
-           })
-    );
+    // db.collection("complaint").where("userid",isEqualTo: document['userid']).get().then((QuerySnapshot) => 
+    //        QuerySnapshot.docs.forEach((doc){
+    //         doc.reference.delete();
+    //        })
+    // );
+    db.collection('complaint').doc(complaintid).delete();
     flag=0;
     Get.snackbar('Success ⚠️', 'Deleted sucessfully');
     ctrl.profiledetails();
-    
-    // print(ctrl.profiledata['complaint']);
+    print('flag=$flag');
+    print('complaint1=');
+
+    print(ctrl.profiledata['complaint']);
   }
 }

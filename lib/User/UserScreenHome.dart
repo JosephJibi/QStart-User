@@ -21,6 +21,7 @@ class UserScreenHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ctrl2.flag=0;
     return Container(
       decoration: BoxDecoration(
         gradient: AppColor().secondGradient,
@@ -104,7 +105,7 @@ class UserScreenHome extends StatelessWidget {
                    StreamBuilder<QuerySnapshot>(
                       stream: FirebaseFirestore.instance
                           .collection('complaint')
-                          .orderBy('date',descending: false)
+                          .orderBy('date',descending: true)
                           .snapshots(),
                       builder: (context, snapshot) {
                         print('working');
@@ -115,6 +116,8 @@ class UserScreenHome extends StatelessWidget {
                             children: snapshot.data!.docs.map((document) {
                               print('working2');
                               print(ctrl2.flag);
+                              print('complaint =');
+                              print('${ctrl.profiledata['complaint']}');
                               if (ctrl.profiledata['complaint'] == 0 && ctrl2.flag==0) {
                                 ctrl2.flag++;
                               //   print(ctrl2.flag);
@@ -131,7 +134,7 @@ class UserScreenHome extends StatelessWidget {
                                           fit: BoxFit.contain),
                                     ),
                                     Text(
-                                      'You haven\'posted \n any complaints',
+                                      'You haven\'t posted \n any complaints',
                                       style: GoogleFonts.poppins(
                                           fontSize: Dimensions.height15,
                                           fontWeight: FontWeight.w500),
@@ -198,7 +201,7 @@ class UserScreenHome extends StatelessWidget {
                                         : (document['status'] == 'Pending')
                                             ? AppColor.pendingColour
                                             : (document['status'] ==
-                                                    'Done Verified')
+                                                    'Verified')
                                                 ? AppColor.doneVerifiedColour
                                                 : AppColor.doneColour,
                           ),
