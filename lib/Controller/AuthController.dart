@@ -225,7 +225,11 @@ class AuthController extends GetxController{
 
     ImagePicker imagePicker = ImagePicker();
     XFile? file = await imagePicker.pickImage(source: ImageSource.gallery);
-
+     if(file==null || file=='' || file==' '){
+      Get.snackbar('Unable to update', 'Choose a file to change our profile photo');
+      return;
+    }
+    Get.snackbar('Uploading ...','Please wait.');
 
     //creating a unique file name to image using datetime.now() function
     String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();

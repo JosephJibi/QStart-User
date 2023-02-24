@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:qstart/Controller/AuthController.dart';
+import 'package:qstart/User/Popup/HelpPopup.dart';
+import 'package:qstart/User/Popup/InfoPopup.dart';
 import 'package:qstart/utilities/dimensions.dart';
 
 class UserProfile extends StatelessWidget {
@@ -23,7 +25,9 @@ class UserProfile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      infoPopUp(context);
+                    },
                     icon: const FaIcon(
                         color: Color.fromARGB(255, 58, 73, 99),
                         FontAwesomeIcons.circleInfo))
@@ -141,7 +145,14 @@ class UserProfile extends StatelessWidget {
                 // content: '5445',
                 content: ctrl.profiledata['uniqueNo'],
                 cardicon: const Icon(Icons.numbers)),
-
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(onPressed: (){
+                    helpPopup(context);
+                }, child: Text('Different Statues ? '))
+              ],
+            ),
             GestureDetector(
               onTap: () {
                 // ctrl.profiledetails();

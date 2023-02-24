@@ -46,7 +46,7 @@ class QuestionScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding:  EdgeInsets.symmetric(horizontal: Dimensions.width20,vertical: Dimensions.height40),
+            padding:  EdgeInsets.symmetric(horizontal: Dimensions.width10,vertical: Dimensions.height20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               
@@ -84,17 +84,18 @@ class QuestionScreen extends StatelessWidget {
                   animate: true,
                   repeat: false,
                   fit: BoxFit.cover,
-                  height: Dimensions.height80,
+                  height: Dimensions.height100,
                   width: Dimensions.width90
                   )
                 ],
               ),
             ),
+           
             //row for employees?
             Obx(
               
               () =>  Row(
-              
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Checkbox(
                       value: ctr1.isCheckedEmployee.value,
@@ -122,7 +123,7 @@ class QuestionScreen extends StatelessWidget {
                   animate: true,
                   repeat: false,
                   fit: BoxFit.cover,
-                  height: Dimensions.height80,
+                  height: Dimensions.height100,
                   width: Dimensions.width90
                   )
                 ],
