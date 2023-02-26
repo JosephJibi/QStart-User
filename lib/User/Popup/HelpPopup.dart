@@ -17,9 +17,9 @@ Future helpPopup(BuildContext ctx) async {
             }, child: Text('Close')))
           ],
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(Dimensions.height25),
-                  bottomLeft: Radius.circular(Dimensions.height25))),
+              borderRadius: BorderRadius.all(
+                 Radius.circular(Dimensions.height25),
+                  )),
           content: Container(
             width: MediaQuery.of(ctx).size.width,
             height: Dimensions.height300,

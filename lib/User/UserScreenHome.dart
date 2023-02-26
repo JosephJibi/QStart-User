@@ -38,12 +38,12 @@ class UserScreenHome extends StatelessWidget {
              SizedBox(
               height: Dimensions.height70,
             ),
-            Row(
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: Dimensions.height120,
-                  width: Dimensions.width120,
+                  height: Dimensions.height59,
+                  width: Dimensions.width90,
                   child: Image.asset(
                     'assets/images/logo.png',
                     fit: BoxFit.cover,
@@ -52,7 +52,7 @@ class UserScreenHome extends StatelessWidget {
                  Text(
                   'QSTART',
                   style: TextStyle(
-                      color: const Color.fromARGB(255, 77, 82, 89),
+                      color:  Colors.grey.shade800,
                       letterSpacing: Dimensions.height2,
                       fontSize: Dimensions.height40,
                       fontWeight: FontWeight.bold,
@@ -74,8 +74,8 @@ class UserScreenHome extends StatelessWidget {
                   ),
                   boxShadow:  [
                     BoxShadow(
-                      color: const Color.fromARGB(255, 97, 85, 85),
-                      spreadRadius: Dimensions.height07,
+                      color:  Colors.grey.shade500,
+                      spreadRadius: Dimensions.height05,
                       blurRadius: Dimensions.height15,
                     )
                   ]),
@@ -135,6 +135,7 @@ class UserScreenHome extends StatelessWidget {
                                     ),
                                     Text(
                                       'You haven\'t posted \n any complaints',
+                                        textAlign: TextAlign.center,
                                       style: GoogleFonts.poppins(
                                           fontSize: Dimensions.height15,
                                           fontWeight: FontWeight.w500),

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class AppColor {
 
@@ -6,43 +7,43 @@ class AppColor {
    Gradient mainGradient = const LinearGradient(
       begin: Alignment.topRight,
       end: Alignment.bottomLeft,
-      stops: [
-        0.2,
-        0.5,
-        0.8,
-        0.7
-      ],
+      // stops: [
+      //   0.2,
+      //   0.5,
+      //   0.8,
+      //   0.7
+      // ],
       colors: [
-        Color.fromARGB(255, 227, 242, 253),
-        Color.fromARGB(255, 187, 222, 251),
-        Color.fromARGB(255, 144, 202, 249),
-        Color.fromARGB(255, 100, 181, 246)
+        Color.fromARGB(255, 251, 252, 252),
+        Color.fromARGB(255, 234, 243, 249),
+        Color.fromARGB(255, 215, 233, 249),
+        Color.fromARGB(255, 186, 222, 249)
       ]);
 
       //maingradient
    Gradient secondGradient = const LinearGradient(
       begin: Alignment.centerRight,
       end: Alignment.centerLeft,
-      stops: [
-        0.2,
-        0.5,
-        0.8,
-        0.7
-      ],
+      // stops: [
+      //   0.2,
+      //   0.5,
+      //   0.8,
+      //   0.7
+      // ],
       colors: [
-        Color.fromARGB(255, 227, 242, 253),
-        Color.fromARGB(255, 187, 222, 251),
-        Color.fromARGB(255, 144, 202, 249),
-        Color.fromARGB(255, 100, 181, 246)
+        Color.fromARGB(255, 251, 252, 252),
+        Color.fromARGB(255, 234, 243, 249),
+        Color.fromARGB(255, 215, 233, 249),
+        Color.fromARGB(255, 186, 222, 249)
       ]);
 
   
-      static  final doneColour =  Color(0xFF00796B);
-      static  final doneVerifiedColour =  Color(0xFF69F0AE);
-      static  final pendingColour =  Color(0xFFFFEB3B);
-      static  final  declainedColour =  Color(0xFFFF1744);
-      static  final  processingColour =  Color(0xFF03A9F4);
-      static  final requestedColour =  Color(0xFFE040FB);
+      static  final doneColour =  Colors.lightGreen.shade400;
+      static  final doneVerifiedColour =  Colors.green.shade700;
+      static  final pendingColour =  Colors.orange.shade700;
+      static  final  declainedColour =  Colors.redAccent;
+      static  final  processingColour =  Colors.lightBlueAccent;
+      static  final requestedColour =  Colors.purple.shade700;
 
 
 }

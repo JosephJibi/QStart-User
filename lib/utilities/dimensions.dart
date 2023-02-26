@@ -14,15 +14,23 @@ class Dimensions{
   static double width17 = screenWidth / 23.102;
   static double width20 = screenWidth / 19.6365;
   static double width25 = screenWidth / 15.709;
+  static double width40 = screenWidth / 9.81818;
+  static double width70 = screenWidth / 5.61038857;
 
   static double width90 = screenWidth / 4.36;
   static double width100 = screenWidth / 3.93;
   static double width120 = screenWidth / 3.273;
   static double width170 = screenWidth / 2.31016;
-  
+  static double width190 = screenWidth / 2.0669853;
+  static double width210 = screenWidth / 1.87013;
+  static double width250 = screenWidth / 1.5709088;
+
+  static double width300 = screenWidth / 1.3091;
+
   static double width380 = screenWidth / 1.03349;
 
   //height
+  static double height05 = screenHeight / 1562.18;
   static double height07 = screenHeight / 1115.84;
   static double height1 = screenHeight / 781.09;
   static double height2 = screenHeight / 390.545;

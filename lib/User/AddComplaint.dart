@@ -31,35 +31,39 @@ class AddComplaint extends StatelessWidget {
                   SizedBox(
                     height: Dimensions.height59,
                   ),
+                  SizedBox(height: Dimensions.height20,),
                   //row which hold logo and main name
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
+                        padding: EdgeInsets.zero,
                         //logo container
                         height: Dimensions.height100,
-                        width: Dimensions.width100,
+                        
+                        width: Dimensions.width250,
                         child: Image.asset(
-                          'assets/images/logo.png',
+                          'assets/images/logotext.png',
                           fit: BoxFit.cover,
                         ),
                       ),
-                       Text(             //App Name
-                          'QSTART',
-                          style: TextStyle(
-                              color: const Color.fromARGB(255, 77, 82, 89),
-                              letterSpacing: Dimensions.height2,
-                              fontSize: Dimensions.height40,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Amaranth-Bold'),
-                        ),
+                      //  Text(             //App Name
+                      //     'START',
+                      //     style: TextStyle(
+                           
+                      //         color: Color.fromARGB(255, 74, 78, 82),
+                      //         letterSpacing: Dimensions.height2,
+                      //         fontSize: Dimensions.height40,
+                      //         fontWeight: FontWeight.bold,
+                      //         fontFamily: 'Amaranth-Bold'),
+                      //   ),
                     ],
                   ),
                   //sizedbox between logo and file a complaint text
-                  SizedBox(height: Dimensions.height30,),
+                  SizedBox(height: Dimensions.height20,),
                   Text('File a Complaint',
                       style: GoogleFonts.anybody(
-                          color: const Color.fromARGB(255, 67, 77, 82),
+                          color: Color.fromARGB(255, 75, 78, 79),
                           fontSize: Dimensions.height30)),
                   //sized box to move the second container little down
                   SizedBox(
@@ -80,7 +84,7 @@ class AddComplaint extends StatelessWidget {
                     ),
                     boxShadow:  [
                       BoxShadow(
-                        color: const Color.fromARGB(255, 97, 85, 85),
+                        color:  Colors.grey.shade500,
                         spreadRadius: Dimensions.height1,
                         blurRadius: Dimensions.height15,
                       )

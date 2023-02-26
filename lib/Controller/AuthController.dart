@@ -247,7 +247,7 @@ class AuthController extends GetxController{
     
     try{
       //upload image
-      await referenceImage.putFile(File(file!.path));
+      await referenceImage.putFile(File(file.path));
       //Sucess: Get image download url 
       imgUrl = await referenceImage.getDownloadURL();
 

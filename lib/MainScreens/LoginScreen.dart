@@ -176,7 +176,7 @@ class LoginScreen extends StatelessWidget {
       return 
           AlertDialog(
              
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(Dimensions.height25),bottomLeft: Radius.circular(Dimensions.height25))),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all( Radius.circular(Dimensions.height25))),
             content: Container(
                width: MediaQuery.of(ctx).size.width,
             height: Dimensions.height300,
