@@ -87,13 +87,16 @@ class DetailsPage extends StatelessWidget {
                         children: [
                           //define date of complaint
                           const Icon(Icons.calendar_month_outlined),
-                          Text(document['date']),
+                          Text(
+                            document['date'],
+                            style: GoogleFonts.poppins(),
+                          ),
                           const Spacer(),
                           //container for display work status
                           Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.all(
-                                    Radius.circular(Dimensions.height10)),
+                                    Radius.circular(Dimensions.height50)),
                                 color: (document['status'] == 'Requested')
                                     ? AppColor.requestedColour
                                     : (document['status'] == 'Processing')
@@ -109,8 +112,28 @@ class DetailsPage extends StatelessWidget {
                                                     : AppColor.doneColour,
                               ),
                               child: Padding(
-                                padding: EdgeInsets.all(Dimensions.height8),
-                                child: Text(document['status']),
+                                padding: EdgeInsets.all(Dimensions.height5),
+                                child: Text(
+                                  document['status'],
+                                  style: GoogleFonts.poppins(
+                                      color: (document['status'] == 'Requested')
+                                          ? AppColor.requestedtextColour
+                                          : (document['status'] == 'Processing')
+                                              ? AppColor.processingtextColour
+                                              : (document['status'] ==
+                                                      'Declined')
+                                                  ? AppColor.declainedtextColour
+                                                  : (document['status'] ==
+                                                          'Pending')
+                                                      ? AppColor
+                                                          .pendingtextColour
+                                                      : (document['status'] ==
+                                                              'Verified')
+                                                          ? AppColor
+                                                              .doneVerifiedtextColour
+                                                          : AppColor
+                                                              .donetextColour),
+                                ),
                               )),
                         ],
                       ),
@@ -120,16 +143,16 @@ class DetailsPage extends StatelessWidget {
                       //heading - title of complaint
                       Text(
                         document['title'],
-                        style: GoogleFonts.firaSans(
-                            fontWeight: FontWeight.bold,
-                            fontSize: Dimensions.height40),
+                        style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w700,
+                            fontSize: Dimensions.height30),
                       ),
                       //location hint of complaint
                       Text(
                         document['locationhint'],
                         style: GoogleFonts.poppins(
-                          fontSize: Dimensions.height20,
-                        ),
+                            fontSize: Dimensions.height20,
+                            fontWeight: FontWeight.w300),
                       ),
                       SizedBox(
                         height: Dimensions.height5,
@@ -141,7 +164,10 @@ class DetailsPage extends StatelessWidget {
                           SizedBox(
                             width: Dimensions.width10,
                           ),
-                          Text(document['time'])
+                          Text(
+                            document['time'],
+                            style: GoogleFonts.poppins(),
+                          )
                         ],
                       ),
                       SizedBox(
