@@ -21,21 +21,29 @@ class UserScreenHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ctrl2.flag=0;
+    ctrl2.flag = 0;
     return Container(
-      decoration: BoxDecoration(
-        gradient: AppColor().secondGradient,
+      decoration: const BoxDecoration(
+        // gradient: AppColor().secondGradient,
+        image: DecorationImage(
+            image: AssetImage("assets/images/background3.jpg"),
+            fit: BoxFit.fill),
       ),
       child: Column(children: [
         //first container(main 1)
         Container(
-          height: (ctrl.profiledata['complaint'] == 0) ? Dimensions.height280 : Dimensions.height230,
+          height: (ctrl.profiledata['complaint'] == 0)
+              ? Dimensions.height280
+              : Dimensions.height230,
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            gradient: AppColor().mainGradient,
+          decoration: const BoxDecoration(
+            // gradient: AppColor().mainGradient,
+            image: DecorationImage(
+                image: AssetImage("assets/images/background3.jpg"),
+                fit: BoxFit.cover),
           ),
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-             SizedBox(
+            SizedBox(
               height: Dimensions.height70,
             ),
             Column(
@@ -43,21 +51,22 @@ class UserScreenHome extends StatelessWidget {
               children: [
                 Container(
                   height: Dimensions.height59,
-                  width: Dimensions.width90,
+                  margin: const EdgeInsets.all(10),
+                  decoration: const BoxDecoration(
+                      color: Colors.white, shape: BoxShape.circle),
                   child: Image.asset(
-                    'assets/images/logo.png',
-                    fit: BoxFit.cover,
+                    "assets/images/logo2.png",
                   ),
                 ),
-                 Text(
+                Text(
                   'QSTART',
-                  style: TextStyle(
-                      color:  Colors.grey.shade800,
-                      letterSpacing: Dimensions.height2,
-                      fontSize: Dimensions.height40,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Amaranth-Bold'),
-                )
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    letterSpacing: Dimensions.height2,
+                    fontSize: Dimensions.height30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
             ),
           ]),
@@ -67,62 +76,60 @@ class UserScreenHome extends StatelessWidget {
           child: Container(
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  borderRadius:  BorderRadius.only(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(Dimensions.height30),
                     topRight: Radius.circular(Dimensions.height30),
                   ),
-                  boxShadow:  [
+                  boxShadow: const [
                     BoxShadow(
-                      color:  Colors.grey.shade500,
-                      spreadRadius: Dimensions.height05,
-                      blurRadius: Dimensions.height15,
-                    )
+                        color: Colors.white24,
+                        spreadRadius: 0.7,
+                        blurRadius: 10,
+                        offset: Offset(2, -2))
                   ]),
               //if complaint field of current user is null then we not need to use streambuilder because thatmeans user have not posted any complaints
 
               child:
-              //  (ctrl.profiledata['complaint'] == 0)
-              //     ?
-              //     //if not complaint has posted by currentuser then return a column
-              //     Column(
-              //         children: [
-              //           Container(
-              //             height: 280,
-              //             child: Lottie.network(
-              //                 // 'https://assets6.lottiefiles.com/packages/lf20_zfnngl5k.json',
-              //                 'https://assets2.lottiefiles.com/packages/lf20_fmieo0wt.json',
-              //                 // repeat: false,
-              //                 fit: BoxFit.contain),
-              //           ),
-              //           Text(
-              //             'You haven\'posted \n any complaints',
-              //             style: GoogleFonts.poppins(
-              //                 fontSize: 15, fontWeight: FontWeight.w500),
-              //           )
-              //         ],
-              //       ):
-                   StreamBuilder<QuerySnapshot>(
+                  //  (ctrl.profiledata['complaint'] == 0)
+                  //     ?
+                  //     //if not complaint has posted by currentuser then return a column
+                  //     Column(
+                  //         children: [
+                  //           Container(
+                  //             height: 280,
+                  //             child: Lottie.network(
+                  //                 // 'https://assets6.lottiefiles.com/packages/lf20_zfnngl5k.json',
+                  //                 'https://assets2.lottiefiles.com/packages/lf20_fmieo0wt.json',
+                  //                 // repeat: false,
+                  //                 fit: BoxFit.contain),
+                  //           ),
+                  //           Text(
+                  //             'You haven\'posted \n any complaints',
+                  //             style: GoogleFonts.poppins(
+                  //                 fontSize: 15, fontWeight: FontWeight.w500),
+                  //           )
+                  //         ],
+                  //       ):
+                  StreamBuilder<QuerySnapshot>(
                       stream: FirebaseFirestore.instance
                           .collection('complaint')
-                          .orderBy('date',descending: true)
+                          .orderBy('date', descending: true)
                           .snapshots(),
                       builder: (context, snapshot) {
-                        print('working');
                         if (!snapshot.hasData) {
-                          return const Center(child: CircularProgressIndicator());
+                          return const Center(
+                              child: CircularProgressIndicator());
                         } else {
                           return ListView(
+                            padding: EdgeInsets.only(top: Dimensions.height25),
                             children: snapshot.data!.docs.map((document) {
-                              print('working2');
-                              print(ctrl2.flag);
-                              print('complaint =');
-                              print('${ctrl.profiledata['complaint']}');
-                              if (ctrl.profiledata['complaint'] == 0 && ctrl2.flag==0) {
+                              if (ctrl.profiledata['complaint'] == 0 &&
+                                  ctrl2.flag == 0) {
                                 ctrl2.flag++;
-                              //   print(ctrl2.flag);
-                              //  print('working');
-                              //  print(ctrl.profiledata['complaint']);
+                                //   print(ctrl2.flag);
+                                //  print('working');
+                                //  print(ctrl.profiledata['complaint']);
                                 return Column(
                                   children: [
                                     Container(
@@ -135,7 +142,7 @@ class UserScreenHome extends StatelessWidget {
                                     ),
                                     Text(
                                       'You haven\'t posted \n any complaints',
-                                        textAlign: TextAlign.center,
+                                      textAlign: TextAlign.center,
                                       style: GoogleFonts.poppins(
                                           fontSize: Dimensions.height15,
                                           fontWeight: FontWeight.w500),
@@ -165,15 +172,24 @@ class UserScreenHome extends StatelessWidget {
         Get.to(DetailsPage(document));
       },
       child: Padding(
-        padding:  EdgeInsets.all(Dimensions.height8),
+        padding: EdgeInsets.all(Dimensions.height8),
         child: Container(
           height: Dimensions.height150,
           width: Dimensions.width380,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(Dimensions.height10)),
-              color: Colors.white,
-              border: Border.all(
-                  color: const Color.fromARGB(255, 159, 186, 218), width: Dimensions.height1)),
+            borderRadius:
+                BorderRadius.all(Radius.circular(Dimensions.height30)),
+            boxShadow: const [
+              BoxShadow(
+                  color: Colors.black12,
+                  // spreadRadius: 0.7,
+                  blurRadius: 10,
+                  offset: Offset(2, -2))
+            ],
+            color: Colors.white,
+            // border: Border.all(
+            //     color: const Color.fromARGB(255, 159, 186, 218), width: Dimensions.height1)
+          ),
           child: Padding(
             padding: EdgeInsets.all(Dimensions.height20),
             child: Column(
@@ -185,14 +201,15 @@ class UserScreenHome extends StatelessWidget {
                       Text(
                         document['title'],
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: Dimensions.height25),
+                        style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w500,
+                            fontSize: Dimensions.height20),
                       ),
                       const Spacer(),
                       Container(
                           decoration: BoxDecoration(
-                            borderRadius:
-                                 BorderRadius.all(Radius.circular(Dimensions.height10)),
+                            borderRadius: BorderRadius.all(
+                                Radius.circular(Dimensions.height50)),
                             color: (document['status'] == 'Requested')
                                 ? AppColor.requestedColour
                                 : (document['status'] == 'Processing')
@@ -201,14 +218,31 @@ class UserScreenHome extends StatelessWidget {
                                         ? AppColor.declainedColour
                                         : (document['status'] == 'Pending')
                                             ? AppColor.pendingColour
-                                            : (document['status'] ==
-                                                    'Verified')
+                                            : (document['status'] == 'Verified')
                                                 ? AppColor.doneVerifiedColour
                                                 : AppColor.doneColour,
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(Dimensions.height8),
-                            child: Text(document['status']),
+                            padding: EdgeInsets.all(Dimensions.height5),
+                            child: Text(
+                              document['status'],
+                              style: GoogleFonts.poppins(
+                                  color: (document['status'] == 'Requested')
+                                      ? AppColor.requestedtextColour
+                                      : (document['status'] == 'Processing')
+                                          ? AppColor.processingtextColour
+                                          : (document['status'] == 'Declined')
+                                              ? AppColor.declainedtextColour
+                                              : (document['status'] ==
+                                                      'Pending')
+                                                  ? AppColor.pendingtextColour
+                                                  : (document['status'] ==
+                                                          'Verified')
+                                                      ? AppColor
+                                                          .doneVerifiedColour
+                                                      : AppColor
+                                                          .donetextColour),
+                            ),
                           )),
                     ],
                   ),
@@ -224,6 +258,7 @@ class UserScreenHome extends StatelessWidget {
                         // +'...'
                         document['description'],
                         overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.poppins(),
                       ),
                       SizedBox(
                         height: Dimensions.height5,
@@ -237,12 +272,14 @@ class UserScreenHome extends StatelessWidget {
                             Text(
                               document['locationhint'],
                               overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.poppins(),
                             ),
                             const Spacer(),
                             VerticalDivider(
                               // color: Colors.black,  //color of divider
                               // width: 10, //width space of divider
-                              thickness: Dimensions.height2, //thickness of divier line
+                              thickness:
+                                  Dimensions.height2, //thickness of divier line
                               // indent: 1, //Spacing at the top of divider.
                               // endIndent: 1, //Spacing at the bottom of divider.
                             ),
@@ -250,7 +287,10 @@ class UserScreenHome extends StatelessWidget {
                             SizedBox(
                               width: Dimensions.width5,
                             ),
-                            Text(document['date'])
+                            Text(
+                              document['date'],
+                              style: GoogleFonts.poppins(),
+                            )
                           ],
                         ),
                       ),

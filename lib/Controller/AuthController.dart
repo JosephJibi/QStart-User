@@ -224,7 +224,8 @@ class AuthController extends GetxController{
   addProfileImage() async{
 
     ImagePicker imagePicker = ImagePicker();
-    XFile? file = await imagePicker.pickImage(source: ImageSource.gallery);
+    XFile? file = await imagePicker.pickImage(source: ImageSource.gallery,
+     imageQuality: 99,);
      if(file==null || file=='' || file==' '){
       Get.snackbar('Unable to update', 'Choose a file to change our profile photo');
       return;
